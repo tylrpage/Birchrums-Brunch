@@ -6,6 +6,8 @@ using UnityEngine;
 public class Pulldown : MonoBehaviour
 {
     [SerializeField] private float startY;
+    [SerializeField] private float maxY;
+    [SerializeField] private AnimationCurve limitCurve;
 
     private Rigidbody2D _rigidbody2D;
 
@@ -18,13 +20,10 @@ public class Pulldown : MonoBehaviour
     {
         if (transform.position.y > startY && _rigidbody2D.velocity.y > 0)
         {
-            //_rigidbody2D.gravityScale = 1 + _rigidbody2D.position.y - startY;
-            float diff = transform.position.y - startY;
-            _rigidbody2D.AddForce(new Vector2(0, -diff), ForceMode2D.Force);
-        }
-        else
-        {
-            //_rigidbody2D.gravityScale = 1;
+            float mult = 1 - limitCurve.Evaluate((transform.position.y - startY) / maxY);
+            Debug.Log(mult);
+            var multVector = new Vector2(1, mult);
+            _rigidbody2D.velocity *= multVector;
         }
     }
 }
