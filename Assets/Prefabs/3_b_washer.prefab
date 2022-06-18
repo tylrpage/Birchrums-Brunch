@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2365118182593603123
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5124359249090748147, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+      propertyPath: m_Name
+      value: 1 Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124359249090748150, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 44407f8ac3ee9474baeba54b36b3ad1d, type: 3}
+    - target: {fileID: 5124359249090748151, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124359249090748151, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124359249090748151, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124359249090748151, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124359249090748151, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124359249090748151, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124359249090748151, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124359249090748151, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124359249090748151, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124359249090748151, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124359249090748151, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+--- !u!1 &7480470058314348736 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5124359249090748147, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+  m_PrefabInstance: {fileID: 2365118182593603123}
+  m_PrefabAsset: {fileID: 0}
+--- !u!60 &7086163742593422099
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480470058314348736}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.37, y: 3.83}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.72499996, y: -1.885}
+      - {x: 0.885, y: -1.885}
+      - {x: 0.97499996, y: -1.8449999}
+      - {x: 1.105, y: -1.765}
+      - {x: 1.165, y: -1.7149999}
+      - {x: 1.285, y: -1.605}
+      - {x: 1.375, y: -1.485}
+      - {x: 1.435, y: -1.395}
+      - {x: 1.5749999, y: -1.175}
+      - {x: 1.5949999, y: -1.105}
+      - {x: 1.5849999, y: -1.005}
+      - {x: 1.605, y: -0.865}
+      - {x: 1.615, y: -0.78499997}
+      - {x: 1.605, y: -0.705}
+      - {x: 1.615, y: -0.49499997}
+      - {x: 1.605, y: -0.315}
+      - {x: 1.615, y: -0.175}
+      - {x: 1.645, y: 0.105}
+      - {x: 1.645, y: 0.355}
+      - {x: 1.635, y: 0.415}
+      - {x: 1.655, y: 0.525}
+      - {x: 1.635, y: 0.60499996}
+      - {x: 1.645, y: 0.705}
+      - {x: 1.645, y: 1.0749999}
+      - {x: 1.665, y: 1.165}
+      - {x: 1.665, y: 1.2149999}
+      - {x: 1.655, y: 1.255}
+      - {x: 1.645, y: 1.425}
+      - {x: 1.655, y: 1.515}
+      - {x: 1.625, y: 1.7249999}
+      - {x: 1.5849999, y: 1.785}
+      - {x: 1.485, y: 1.8449999}
+      - {x: 1.395, y: 1.8349999}
+      - {x: 1.345, y: 1.875}
+      - {x: 1.265, y: 1.885}
+      - {x: 1.0849999, y: 1.885}
+      - {x: 1.005, y: 1.875}
+      - {x: 0.53499997, y: 1.865}
+      - {x: 0.48499998, y: 1.885}
+      - {x: 0.33499998, y: 1.865}
+      - {x: -0.024999999, y: 1.865}
+      - {x: -0.16499999, y: 1.875}
+      - {x: -0.295, y: 1.865}
+      - {x: -0.415, y: 1.8449999}
+      - {x: -0.45499998, y: 1.8349999}
+      - {x: -0.555, y: 1.785}
+      - {x: -0.655, y: 1.675}
+      - {x: -0.78499997, y: 1.495}
+      - {x: -0.875, y: 1.375}
+      - {x: -1.025, y: 1.3149999}
+      - {x: -1.1949999, y: 1.2049999}
+      - {x: -1.365, y: 1.025}
+      - {x: -1.395, y: 0.965}
+      - {x: -1.525, y: 0.815}
+      - {x: -1.5649999, y: 0.73499995}
+      - {x: -1.605, y: 0.625}
+      - {x: -1.625, y: 0.545}
+      - {x: -1.635, y: 0.45499998}
+      - {x: -1.635, y: -0.225}
+      - {x: -1.615, y: -0.445}
+      - {x: -1.605, y: -0.635}
+      - {x: -1.5949999, y: -0.835}
+      - {x: -1.5849999, y: -0.98499995}
+      - {x: -1.5749999, y: -1.145}
+      - {x: -1.5749999, y: -1.425}
+      - {x: -1.525, y: -1.665}
+      - {x: -1.435, y: -1.735}
+      - {x: -1.275, y: -1.795}
+      - {x: -1.035, y: -1.8449999}
+      - {x: -0.875, y: -1.865}
+      - {x: -0.765, y: -1.875}
+      - {x: -0.475, y: -1.875}
+      - {x: -0.33499998, y: -1.885}
+      - {x: 0.175, y: -1.885}
+      - {x: 0.625, y: -1.875}
