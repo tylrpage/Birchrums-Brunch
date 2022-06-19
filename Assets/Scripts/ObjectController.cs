@@ -11,6 +11,7 @@ public class ObjectController : MonoBehaviour
     [SerializeField] private bool good;
 
     public int GroupLevel => groupLevel;
+    public bool Good => good;
 
     private void OnDestroy()
     {
