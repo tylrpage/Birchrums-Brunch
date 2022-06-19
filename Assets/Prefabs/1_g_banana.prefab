@@ -19,6 +19,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1_g_banana
       objectReference: {fileID: 0}
+    - target: {fileID: 5124359249090748149, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+      propertyPath: m_LinearDrag
+      value: 1.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124359249090748149, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+      propertyPath: m_AngularDrag
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124359249090748149, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5124359249090748150, guid: 084be6b63e94fde40844d45682cf4e9f, type: 3}
       propertyPath: m_Sprite
       value: 
