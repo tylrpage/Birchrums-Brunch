@@ -12,7 +12,11 @@ public class BottomDestroyer : MonoBehaviour
         {
             if (objectController.Good)
             {
-                // todo: give points
+                GameManager.Instance.PointsManager.ChangePoints(500);
+            }
+            else
+            {
+                GameManager.Instance.PointsManager.ChangePoints(-500);
             }
                 
             Destroy(objectController.gameObject);

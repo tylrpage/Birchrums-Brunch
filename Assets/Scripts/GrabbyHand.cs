@@ -16,6 +16,7 @@ public class GrabbyHand : MonoBehaviour
     private Rigidbody2D _grabbedObject;
     private Vector3 _grabbedObjectOffset;
     private bool _currentlyGrabbing;
+    private bool _awardedPoints;
 
     private void Awake()
     {
@@ -51,6 +52,8 @@ public class GrabbyHand : MonoBehaviour
 
     private IEnumerator GrabRoutine(Action completed)
     {
+        _awardedPoints = false;
+        
         Vector2 targetPosition = isLeft
             ? _startPosition + (moveDistance * Vector2.right)
             : _startPosition + moveDistance * Vector2.left;
@@ -81,6 +84,23 @@ public class GrabbyHand : MonoBehaviour
                 returnPosX = _startPosition.x + (isLeft ? -1 : 1) * extraMoveDistance;
                 // Move the grabbed object along with us
                 _grabbedObject.MovePosition(transform.position + _grabbedObjectOffset);
+
+                // Only awards points once per routine
+                if (!_awardedPoints)
+                {
+                    // add or subtract points depending on the object
+                    _awardedPoints = true;
+                    
+                    var grabbedObjectController = _grabbedObject.GetComponent<ObjectController>();
+                    if (!grabbedObjectController.Good)
+                    {
+                        GameManager.Instance.PointsManager.ChangePoints(500);
+                    }
+                    else
+                    {
+                        GameManager.Instance.PointsManager.ChangePoints(-500);
+                    }
+                }
             }
 
             Vector2 movement = (isLeft ? Vector2.left : Vector2.right) * speed;
@@ -91,7 +111,6 @@ public class GrabbyHand : MonoBehaviour
 
         if (_grabbedObject != null)
         {
-            // todo: add or subtract points depending on the object
             Destroy(_grabbedObject.gameObject);
             _grabbedObject = null;
             
