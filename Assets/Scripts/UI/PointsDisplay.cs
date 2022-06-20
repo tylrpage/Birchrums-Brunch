@@ -19,6 +19,7 @@ public class PointsDisplay : MonoBehaviour
     private int _displayedPoints;
     private int _targetPoints;
     private float _textSpeed;
+    private Tweener _currentTween;
 
     private void Awake()
     {
@@ -43,7 +44,13 @@ public class PointsDisplay : MonoBehaviour
     private void PointsManagerOnPointsChanged(int points, int delta)
     {
         _targetPoints = points;
-        pointsText.transform.DOPunchScale(punchVector, punchDuration, punchVibrato, punchElasticity);
+        
+        // Cancel any current tween
+        if (_currentTween?.IsPlaying() ?? false)
+        {
+            _currentTween.Rewind();
+        }
+        _currentTween = pointsText.transform.DOPunchScale(punchVector, punchDuration, punchVibrato, punchElasticity);
 
         // Re-calculate text speed, so that display text reaches the target in textAdjustSpeed seconds
         float diff = Mathf.Abs(_targetPoints - _displayedPoints);
