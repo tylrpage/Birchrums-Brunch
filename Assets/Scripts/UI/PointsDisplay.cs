@@ -23,6 +23,7 @@ public class PointsDisplay : MonoBehaviour
     private void Awake()
     {
         GameManager.Instance.PointsManager.PointsChanged += PointsManagerOnPointsChanged;
+        pointsText.text = _displayedPoints.ToString("N0");
     }
 
     private void Update()
