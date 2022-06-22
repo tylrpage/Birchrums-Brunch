@@ -39,7 +39,8 @@ public class GrabbyHand : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (_grabbedObject == null)
+        // Don't grab if we have something already grabbed, or if it has immunity
+        if (_grabbedObject == null && col.GetComponent<GrabImmunity>() == null)
         {
             _grabbedObject = col.attachedRigidbody;
             _grabbedObject.isKinematic = true;
