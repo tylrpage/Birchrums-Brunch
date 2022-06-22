@@ -10,15 +10,8 @@ public class BottomDestroyer : MonoBehaviour
         var objectController = other.GetComponent<ObjectController>();
         if (other.transform.position.y < transform.position.y && objectController != null)
         {
-            if (objectController.Good)
-            {
-                GameManager.Instance.PointsManager.ChangePoints(500);
-            }
-            else
-            {
-                GameManager.Instance.PointsManager.ChangePoints(-500);
-            }
-                
+            GameManager.Instance.PointsManager.AteObject(objectController.Good);
+
             Destroy(objectController.gameObject);
         }
     }

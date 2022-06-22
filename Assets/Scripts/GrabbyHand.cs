@@ -93,14 +93,7 @@ public class GrabbyHand : MonoBehaviour
                     _awardedPoints = true;
                     
                     var grabbedObjectController = _grabbedObject.GetComponent<ObjectController>();
-                    if (!grabbedObjectController.Good)
-                    {
-                        GameManager.Instance.PointsManager.ChangePoints(500);
-                    }
-                    else
-                    {
-                        GameManager.Instance.PointsManager.ChangePoints(-500);
-                    }
+                    GameManager.Instance.PointsManager.AteObject(!grabbedObjectController.Good);
                 }
             }
 
