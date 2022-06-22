@@ -9,26 +9,58 @@ public class ComboDisplay : MonoBehaviour
     [SerializeField] private TMP_Text comboText;
     [SerializeField] private Transform comboPanelTransform;
     [SerializeField] private Transform starTransform;
+    [SerializeField] private Animator animator;
     
     [SerializeField] private Vector3 punchVector;
     [SerializeField] private float punchDuration;
     [SerializeField] private int punchVibrato;
     [SerializeField] [Range(0, 1)] private float punchElasticity;
+
+    private string _currentAnimation;
     
     private void Awake()
     {
         GameManager.Instance.PointsManager.ComboChanged += PointsManagerOnComboChanged;
-        SetComboText(GameManager.Instance.PointsManager.Combo);
+        SetComboText(GameManager.Instance.PointsManager.Combo, 0);
     }
 
     private void PointsManagerOnComboChanged(int value, int delta)
     {
-        SetComboText(value);
+        SetComboText(value, delta);
         comboPanelTransform.DOPunchScale(punchVector, punchDuration, punchVibrato, punchElasticity);
     }
 
-    private void SetComboText(int combo)
+    private void SetComboText(int combo, int delta)
     {
-        comboText.text = $"x{combo:N0}";
+        if (combo <= 1 && delta >= 0)
+        {
+            comboPanelTransform.gameObject.SetActive(false);
+        }
+        else
+        {
+            comboPanelTransform.gameObject.SetActive(true);
+        }
+
+        if (combo == 1 && delta < 0)
+        {
+            SetAnimation("ClearCombo");
+        }
+        else
+        {
+            comboText.text = $"x{combo:N0}";
+        }
+        
+        if (combo == 2)
+        {
+            SetAnimation("Start");
+        }
+    }
+
+    private void SetAnimation(string animation)
+    {
+        if (animation == _currentAnimation)
+            return;
+        
+        animator.Play(animation);
     }
 }
