@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     
     public PointsManager PointsManager { get; private set; }
+    public LevelSelectManager LevelSelectManager { get; private set; }
 
     private void Awake()
     {
@@ -17,5 +18,6 @@ public class GameManager : MonoBehaviour
         }
 
         PointsManager = GetComponent<PointsManager>();
+        LevelSelectManager = GetComponent<LevelSelectManager>();
     }
 }
