@@ -10,6 +10,8 @@ public class GrabbyHand : MonoBehaviour
     [SerializeField] private float extraMoveDistance;
     [SerializeField] private float oneWayTime;
     [SerializeField] private AnimationCurve speedCurve;
+    [SerializeField] private GameObject openHand;
+    [SerializeField] private GameObject closedHand;
 
     private Vector2 _startPosition;
     private Rigidbody2D _rb;
@@ -22,6 +24,7 @@ public class GrabbyHand : MonoBehaviour
     {
         _startPosition = transform.position;
         _rb = GetComponent<Rigidbody2D>();
+        SetHandState(true);
     }
 
     private void Update()
@@ -37,6 +40,12 @@ public class GrabbyHand : MonoBehaviour
         }
     }
 
+    private void SetHandState(bool open)
+    {
+        openHand.SetActive(open);
+        closedHand.SetActive(!open);
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         // Don't grab if we have something already grabbed, or if it has immunity
@@ -48,6 +57,7 @@ public class GrabbyHand : MonoBehaviour
             //_grabbedObject.gameObject.layer = LayerMask.NameToLayer("Walls");
             _grabbedObject.angularVelocity = 0;
             _grabbedObjectOffset = col.transform.position - transform.position;
+            SetHandState(false);
         }
     }
 
@@ -114,6 +124,7 @@ public class GrabbyHand : MonoBehaviour
             {
                 Vector2 movement = (isLeft ? Vector2.right : Vector2.left) * speed;
                 _rb.velocity = movement;
+                SetHandState(true);
 
                 yield return null;
             }
