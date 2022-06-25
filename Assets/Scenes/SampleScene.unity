@@ -3189,7 +3189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -4586,7 +4586,7 @@ MonoBehaviour:
   objectSpawnCooldownPerLevel:
     list:
     - Key: 0
-      Value: 4
+      Value: 3
     - Key: 1
       Value: 3
     - Key: 2
@@ -4613,6 +4613,7 @@ MonoBehaviour:
       Value: 1,2,3
     - Key: 3
       Value: 1,2,3
+  greensInARowLimit: 1
 --- !u!114 &1590360293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6507,7 +6508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -6891,38 +6892,6 @@ PrefabInstance:
     - target: {fileID: 9002127168494159327, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -2.205
-      objectReference: {fileID: 0}
-    - target: {fileID: 9002127168864788215, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9002127168864788215, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9002127168864788215, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9002127168864788215, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9002127168939180079, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9002127168939180079, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9002127168939180079, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9002127168939180079, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
