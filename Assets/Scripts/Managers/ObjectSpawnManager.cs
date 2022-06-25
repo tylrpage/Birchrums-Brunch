@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class ObjectSpawner : MonoBehaviour
+public class ObjectSpawnManager : MonoBehaviour
 {
     public enum SpawnModes
     {
@@ -18,15 +19,19 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] private float randomRotationVel;
     [SerializeField] private float randomXVel;
     [SerializeField] private Transform objectsParent;
-    [SerializeField] private float objectSpawnCooldown;
-    // Max number of objects in scene
-    [SerializeField] private int maxFixed;
-    // Only spawns objects in this group, only used for fixed mode
-    [SerializeField] private int fixedGroup;
+    [SerializeField] private SerializableDictionary<LevelSelectManager.Level, float> objectSpawnCooldownPerLevel;
+    [SerializeField] private SerializableDictionary<LevelSelectManager.Level, int> maxFixedPerLevel;
+    [SerializeField] private SerializableDictionary<LevelSelectManager.Level, string> fixedGroupsPerLevel;
 
     private Dictionary<int, List<ObjectController>> _objects = new Dictionary<int, List<ObjectController>>();
     private HashSet<ObjectController> _activeObjects = new HashSet<ObjectController>();
     private float _timeSinceLastSpawn;
+    private bool _enabled;
+    private LevelSelectManager.Level _currentLevel;
+
+    private float _objectSpawnCooldown;
+    private int _maxFixed;
+    private List<int> _fixedGroups;
 
     private void Awake()
     {
@@ -35,12 +40,15 @@ public class ObjectSpawner : MonoBehaviour
 
     private void Update()
     {
+        if (!_enabled)
+            return;
+        
         _timeSinceLastSpawn += Time.deltaTime;
         
         switch (spawnMode)
         {
             case SpawnModes.FixedCount:
-                if (_activeObjects.Count < maxFixed && _timeSinceLastSpawn >= objectSpawnCooldown)
+                if (_activeObjects.Count < _maxFixed && _timeSinceLastSpawn >= _objectSpawnCooldown)
                 {
                     ObjectController objectToSpawn = GetRandomObject();
                     if (objectToSpawn != null)
@@ -61,14 +69,24 @@ public class ObjectSpawner : MonoBehaviour
         }
     }
 
+    public void StartLevel(LevelSelectManager.Level level)
+    {
+        _currentLevel = level;
+        _enabled = true;
+        
+        _objectSpawnCooldown = objectSpawnCooldownPerLevel[level];
+        _maxFixed = maxFixedPerLevel[level];
+        _fixedGroups =  fixedGroupsPerLevel[level].Split(',').Select(int.Parse).ToList();
+    }
+
+    public void StopLevel()
+    {
+        _enabled = false;
+    }
+
     private void OnObjectDestroyed(ObjectController sender)
     {
         _activeObjects.Remove(sender);
-    }
-
-    public void SetMaxFixed(int newMax)
-    {
-        maxFixed = newMax;
     }
 
     private void ParseObjectSet(ObjectSet set)
@@ -87,14 +105,15 @@ public class ObjectSpawner : MonoBehaviour
     {
         if (spawnMode == SpawnModes.FixedCount)
         {
-            if (_objects.TryGetValue(fixedGroup, out List<ObjectController> possibles))
+            List<ObjectController> possibles = new List<ObjectController>();
+            foreach (var group in _fixedGroups)
             {
-                int randomIndex = Random.Range(0, possibles.Count);
-                return possibles[randomIndex];
+                possibles.AddRange(_objects[group]);
             }
+            
+            int randomIndex = Random.Range(0, possibles.Count);
+            return possibles[randomIndex];
         }
-        
-        // todo: handle unlimited
 
         return null;
     }

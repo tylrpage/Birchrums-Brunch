@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     
     public PointsManager PointsManager { get; private set; }
     public LevelSelectManager LevelSelectManager { get; private set; }
+    public CameraManager CameraManager { get; private set; }
+    public ObjectSpawnManager ObjectSpawnManager { get; private set; }
 
     private void Awake()
     {
@@ -19,5 +21,7 @@ public class GameManager : MonoBehaviour
 
         PointsManager = GetComponent<PointsManager>();
         LevelSelectManager = GetComponent<LevelSelectManager>();
+        CameraManager = GetComponent<CameraManager>();
+        ObjectSpawnManager = GetComponent<ObjectSpawnManager>();
     }
 }

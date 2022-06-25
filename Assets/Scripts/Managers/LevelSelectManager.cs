@@ -24,9 +24,9 @@ public class LevelSelectManager : MonoBehaviour
     {
         // todo: dummy data, load this from prefs
         _levelStates.Add(Level.One, LevelState.Unlocked);
-        _levelStates.Add(Level.Two, LevelState.Locked);
-        _levelStates.Add(Level.Three, LevelState.Locked);
-        _levelStates.Add(Level.Endless, LevelState.Hidden);
+        _levelStates.Add(Level.Two, LevelState.Unlocked);
+        _levelStates.Add(Level.Three, LevelState.Unlocked);
+        _levelStates.Add(Level.Endless, LevelState.Unlocked);
     }
 
     public LevelState GetLevelState(Level level)

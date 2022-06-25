@@ -5,12 +5,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private LevelSelectManager.Level level;
     [SerializeField] private Image logImage;
     [SerializeField] private Image lockImage;
     [SerializeField] private Image textImage;
+    [SerializeField] private Button button;
 
     private LevelSelectManager.LevelState _levelState;
 
@@ -31,6 +32,8 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             ? levelSelectManager.MysterySprite
             : levelSelectManager.LevelSprites[level];
         textImage.gameObject.SetActive(_levelState != LevelSelectManager.LevelState.Hidden);
+
+        button.interactable = _levelState == LevelSelectManager.LevelState.Unlocked;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -49,7 +52,9 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnClicked()
     {
+        GameManager.Instance.ObjectSpawnManager.StartLevel(level);
+        GameManager.Instance.CameraManager.MoveToCanvas(CameraManager.CanvasOption.Game);
     }
 }
