@@ -58,7 +58,7 @@ public class LevelSelectManager : MonoBehaviour
 
     public bool DidCompleteLevel()
     {
-        int requiredPoints = PointsNeededPerLevel[CurrentLevel];
+        int requiredPoints = GetRequiredPointsForCurrentLevel();
         return GameManager.Instance.PointsManager.Points >= requiredPoints;
     }
 

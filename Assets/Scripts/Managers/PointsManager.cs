@@ -33,6 +33,11 @@ public class PointsManager : MonoBehaviour
         else
         {
             ClearCombo();
+
+            if (GameManager.Instance.LevelSelectManager.CurrentLevel == LevelSelectManager.Level.Endless)
+            {
+                GameManager.Instance.TimeManager.StopGame();
+            }
         }
     }
 

@@ -39,6 +39,12 @@ public class TimeManager : MonoBehaviour
         InitialTime = TimeSpan.Zero;
     }
 
+    public void StopGame()
+    {
+        Enabled = false;
+        TimerEnded?.Invoke();
+    }
+
     public void Update()
     {
         if (Enabled)
