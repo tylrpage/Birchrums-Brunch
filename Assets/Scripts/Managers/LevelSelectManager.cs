@@ -43,8 +43,12 @@ public class LevelSelectManager : MonoBehaviour
         
         GameManager.Instance.ObjectSpawnManager.StartLevel(level);
         GameManager.Instance.CameraManager.MoveToCanvas(CameraManager.CanvasOption.Game);
-        GameManager.Instance.TimeManager.StartTimer(TimeSpan.FromSeconds(20));
         GameManager.Instance.PointsManager.ResetHighestComboAndPoints();
+        
+        if (level == Level.Endless)
+            GameManager.Instance.TimeManager.StartStopwatch();
+        else
+            GameManager.Instance.TimeManager.StartTimer();
     }
 
     public void RestartLevel()

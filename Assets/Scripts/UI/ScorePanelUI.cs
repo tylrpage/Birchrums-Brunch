@@ -46,7 +46,7 @@ public class ScorePanelUI : MonoBehaviour
             requiredPointsPanel.SetActive(false);
 
             timeLastedPanel.SetActive(true);
-            timeLastedText.text = GameManager.Instance.TimeManager.TotalTime.ToString(@"mm\:ss");
+            timeLastedText.text = GameManager.Instance.TimeManager.Time.ToString(@"mm\:ss");
         }
         else
         {

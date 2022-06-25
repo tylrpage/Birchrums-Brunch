@@ -12,47 +12,53 @@ public class TimeManager : MonoBehaviour
     
     public event Action TimerEnded;
     
-    public TimeSpan TimeLeft { get; private set; }
+    public Mode TimerMode { get; private set; }
+    
+    // Represents time left or stopwatch value depending on mode
+    public TimeSpan Time { get; private set; }
     public bool Enabled { get; private set; }
-    // Represents initial timer or stopwatch value depending on mode
-    public TimeSpan TotalTime { get; private set; }
+    public TimeSpan InitialTime { get; private set; }
 
-    private Mode _mode;
+    [SerializeField] private int timerSeconds;
 
-    public void StartTimer(TimeSpan timeLeft)
+    public void StartTimer()
     {
-        _mode = Mode.Timer;
-        TotalTime = timeLeft;
-        TimeLeft = timeLeft;
+        TimeSpan timeLeft = TimeSpan.FromSeconds(timerSeconds);
+        
         Enabled = true;
+        TimerMode = Mode.Timer;
+        InitialTime = timeLeft;
+        Time = timeLeft;
     }
 
     public void StartStopwatch()
     {
-        _mode = Mode.Stopwatch;
-        TotalTime = TimeSpan.Zero;
+        Enabled = true;
+        TimerMode = Mode.Stopwatch;
+        Time = TimeSpan.Zero;
+        InitialTime = TimeSpan.Zero;
     }
 
     public void Update()
     {
         if (Enabled)
         {
-            switch (_mode)
+            switch (TimerMode)
             {
                 case Mode.Timer:
-                    if (TimeLeft.TotalMilliseconds <= 0)
+                    if (Time.TotalMilliseconds <= 0)
                     {
                         Enabled = false;
                         TimerEnded?.Invoke();
                     }
                     else
                     {
-                        TimeLeft -= TimeSpan.FromSeconds(Time.deltaTime);
+                        Time -= TimeSpan.FromSeconds(UnityEngine.Time.deltaTime);
                     }
 
                     break;
                 case Mode.Stopwatch:
-                    TotalTime += TimeSpan.FromSeconds(Time.deltaTime);
+                    Time += TimeSpan.FromSeconds(UnityEngine.Time.deltaTime);
                     break;
             }
         }

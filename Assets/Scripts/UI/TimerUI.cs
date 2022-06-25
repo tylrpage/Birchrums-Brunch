@@ -22,15 +22,24 @@ public class TimerUI : MonoBehaviour
     private void Update()
     {
         TimeManager timeManager = GameManager.Instance.TimeManager;
-        text.text = timeManager.TimeLeft.ToString(@"mm\:ss");
-        fill.fillAmount = (float)timeManager.TimeLeft.Ticks / (float)timeManager.TotalTime.Ticks;
+        text.text = timeManager.Time.ToString(@"mm\:ss");
 
-        if (timeManager.TimeLeft.TotalSeconds <= almostDoneTime)
+        if (timeManager.TimerMode == TimeManager.Mode.Timer)
         {
-            fill.color = almostDoneColor;
+            fill.fillAmount = (float)timeManager.Time.Ticks / (float)timeManager.InitialTime.Ticks;
+            
+            if (timeManager.Time.TotalSeconds <= almostDoneTime)
+            {
+                fill.color = almostDoneColor;
+            }
+            else
+            {
+                fill.color = _originalFillColor;
+            }
         }
         else
         {
+            fill.fillAmount = 1;
             fill.color = _originalFillColor;
         }
     }
