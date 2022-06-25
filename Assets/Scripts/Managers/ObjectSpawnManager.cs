@@ -22,13 +22,13 @@ public class ObjectSpawnManager : MonoBehaviour
     [SerializeField] private SerializableDictionary<LevelSelectManager.Level, float> objectSpawnCooldownPerLevel;
     [SerializeField] private SerializableDictionary<LevelSelectManager.Level, int> maxFixedPerLevel;
     [SerializeField] private SerializableDictionary<LevelSelectManager.Level, string> fixedGroupsPerLevel;
-
+    [SerializeField] private int greensInARowLimit;
+    
     private Dictionary<int, List<ObjectController>> _objects = new Dictionary<int, List<ObjectController>>();
     private HashSet<ObjectController> _activeObjects = new HashSet<ObjectController>();
     private float _timeSinceLastSpawn;
     private bool _enabled;
-    private LevelSelectManager.Level _currentLevel;
-
+    private int _greensInARow;
     private float _objectSpawnCooldown;
     private int _maxFixed;
     private List<int> _fixedGroups;
@@ -67,6 +67,10 @@ public class ObjectSpawnManager : MonoBehaviour
                         _activeObjects.Add(newObject);
 
                         _timeSinceLastSpawn = 0;
+                        if (objectToSpawn.Good)
+                            _greensInARow++;
+                        else
+                            _greensInARow = 0;
                     }
                 }
                 break;
@@ -77,12 +81,13 @@ public class ObjectSpawnManager : MonoBehaviour
 
     public void StartLevel(LevelSelectManager.Level level)
     {
-        _currentLevel = level;
         _enabled = true;
         
         _objectSpawnCooldown = objectSpawnCooldownPerLevel[level];
         _maxFixed = maxFixedPerLevel[level];
         _fixedGroups =  fixedGroupsPerLevel[level].Split(',').Select(int.Parse).ToList();
+        _greensInARow = 0;
+        _timeSinceLastSpawn = float.MaxValue;
     }
 
     public void DeleteAllActiveObjects()
@@ -127,7 +132,11 @@ public class ObjectSpawnManager : MonoBehaviour
             List<ObjectController> possibles = new List<ObjectController>();
             foreach (var group in _fixedGroups)
             {
-                possibles.AddRange(_objects[group]);
+                // If we exceed the greens in a row limit, force a red item
+                if (_greensInARow < greensInARowLimit)
+                    possibles.AddRange(_objects[group]);
+                else
+                    possibles.AddRange(_objects[group].Where(x => !x.Good));
             }
             
             int randomIndex = Random.Range(0, possibles.Count);
