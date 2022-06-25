@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public LevelSelectManager LevelSelectManager { get; private set; }
     public CameraManager CameraManager { get; private set; }
     public ObjectSpawnManager ObjectSpawnManager { get; private set; }
+    public TimeManager TimeManager { get; private set; }
 
     private void Awake()
     {
@@ -23,5 +24,6 @@ public class GameManager : MonoBehaviour
         LevelSelectManager = GetComponent<LevelSelectManager>();
         CameraManager = GetComponent<CameraManager>();
         ObjectSpawnManager = GetComponent<ObjectSpawnManager>();
+        TimeManager = GetComponent<TimeManager>();
     }
 }

@@ -56,5 +56,6 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         GameManager.Instance.ObjectSpawnManager.StartLevel(level);
         GameManager.Instance.CameraManager.MoveToCanvas(CameraManager.CanvasOption.Game);
+        GameManager.Instance.TimeManager.StartTimer(TimeSpan.FromSeconds(20));
     }
 }
