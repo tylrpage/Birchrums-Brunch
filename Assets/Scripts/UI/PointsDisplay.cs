@@ -24,7 +24,15 @@ public class PointsDisplay : MonoBehaviour
     private void Awake()
     {
         GameManager.Instance.PointsManager.PointsChanged += PointsManagerOnPointsChanged;
+        GameManager.Instance.PointsManager.Reset += Reset;
         pointsText.text = _displayedPoints.ToString("N0");
+    }
+
+    private void Reset()
+    {
+        _displayedPoints = 0;
+        _targetPoints = 0;
+        pointsText.text = GameManager.Instance.PointsManager.Points.ToString("N0");
     }
 
     private void Update()

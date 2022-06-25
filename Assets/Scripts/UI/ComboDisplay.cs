@@ -21,6 +21,7 @@ public class ComboDisplay : MonoBehaviour
     private void Awake()
     {
         GameManager.Instance.PointsManager.ComboChanged += PointsManagerOnComboChanged;
+        GameManager.Instance.PointsManager.Reset += Reset;
         SetComboText(GameManager.Instance.PointsManager.Combo, 0);
     }
 
@@ -28,6 +29,11 @@ public class ComboDisplay : MonoBehaviour
     {
         SetComboText(value, delta);
         comboPanelTransform.DOPunchScale(punchVector, punchDuration, punchVibrato, punchElasticity);
+    }
+
+    private void Reset()
+    {
+        comboPanelTransform.gameObject.SetActive(false);
     }
 
     private void SetComboText(int combo, int delta)

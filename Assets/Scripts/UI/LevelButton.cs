@@ -17,6 +17,8 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private void Start()
     {
+        GameManager.Instance.LevelSelectManager.UnlockedChanged += UpdateAppearance;
+        
         UpdateAppearance();
     }
 
@@ -54,8 +56,6 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnClicked()
     {
-        GameManager.Instance.ObjectSpawnManager.StartLevel(level);
-        GameManager.Instance.CameraManager.MoveToCanvas(CameraManager.CanvasOption.Game);
-        GameManager.Instance.TimeManager.StartTimer(TimeSpan.FromSeconds(20));
+        GameManager.Instance.LevelSelectManager.StartLevel(level);
     }
 }

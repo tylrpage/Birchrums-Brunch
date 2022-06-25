@@ -36,6 +36,12 @@ public class ObjectSpawnManager : MonoBehaviour
     private void Awake()
     {
         ParseObjectSet(objectSet);
+        GameManager.Instance.TimeManager.TimerEnded += OnTimerEnded;
+    }
+
+    private void OnTimerEnded()
+    {
+        _enabled = false;
     }
 
     private void Update()
@@ -77,6 +83,19 @@ public class ObjectSpawnManager : MonoBehaviour
         _objectSpawnCooldown = objectSpawnCooldownPerLevel[level];
         _maxFixed = maxFixedPerLevel[level];
         _fixedGroups =  fixedGroupsPerLevel[level].Split(',').Select(int.Parse).ToList();
+    }
+
+    public void DeleteAllActiveObjects()
+    {
+        foreach (var objectController in _activeObjects.ToList())
+        {
+            Destroy(objectController.gameObject);
+        }
+    }
+
+    public void RestartLevel()
+    {
+        _enabled = true;
     }
 
     public void StopLevel()

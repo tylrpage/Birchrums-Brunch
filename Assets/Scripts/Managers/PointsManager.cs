@@ -9,9 +9,11 @@ public class PointsManager : MonoBehaviour
     public delegate void ValueChangedHandler(int value, int delta);
     public event ValueChangedHandler PointsChanged;
     public event ValueChangedHandler ComboChanged;
+    public event Action Reset;
     
     public int Points { get; private set; }
     public int Combo { get; private set; }
+    public int HighestCombo { get; private set; }
 
     [SerializeField] private int basePoints;
 
@@ -46,7 +48,18 @@ public class PointsManager : MonoBehaviour
     public void IncreaseCombo()
     {
         Combo++;
+
+        HighestCombo = Math.Max(Combo, HighestCombo);
+        
         ComboChanged?.Invoke(Combo, 1);
+    }
+
+    public void ResetHighestComboAndPoints()
+    {
+        HighestCombo = 1;
+        Points = 0;
+        Combo = 1;
+        Reset?.Invoke();
     }
 
     public void ClearCombo()

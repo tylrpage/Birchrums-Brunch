@@ -23,7 +23,7 @@ public class TimerUI : MonoBehaviour
     {
         TimeManager timeManager = GameManager.Instance.TimeManager;
         text.text = timeManager.TimeLeft.ToString(@"mm\:ss");
-        fill.fillAmount = (float)timeManager.TimeLeft.Ticks / (float)timeManager.TotalTimeLeft.Ticks;
+        fill.fillAmount = (float)timeManager.TimeLeft.Ticks / (float)timeManager.TotalTime.Ticks;
 
         if (timeManager.TimeLeft.TotalSeconds <= almostDoneTime)
         {
