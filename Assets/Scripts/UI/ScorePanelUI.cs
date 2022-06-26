@@ -9,6 +9,7 @@ public class ScorePanelUI : MonoBehaviour
 {
     [SerializeField] private GameObject success;
     [SerializeField] private GameObject failed;
+    [SerializeField] private GameObject gameOver;
     [SerializeField] private GameObject pointsPanel;
     [SerializeField] private TMP_Text pointsText;
     [SerializeField] private GameObject requiredPointsPanel;
@@ -35,9 +36,11 @@ public class ScorePanelUI : MonoBehaviour
         LevelSelectManager levelSelectManager = GameManager.Instance.LevelSelectManager;
         
         bool didCompleteLevel = levelSelectManager.DidCompleteLevel();
-        success.SetActive(didCompleteLevel);
-        failed.SetActive(!didCompleteLevel);
-        GameManager.Instance.SoundManager.LevelComplete(didCompleteLevel);
+        bool wasEndlessMode = levelSelectManager.CurrentLevel == LevelSelectManager.Level.Endless;
+        success.SetActive(didCompleteLevel && !wasEndlessMode);
+        failed.SetActive(!didCompleteLevel && !wasEndlessMode);
+        gameOver.SetActive(wasEndlessMode);
+        GameManager.Instance.SoundManager.LevelComplete(didCompleteLevel && !wasEndlessMode);
         
         pointsText.text = GameManager.Instance.PointsManager.Points.ToString("N0");
         highestComboText.text = "x" + GameManager.Instance.PointsManager.HighestCombo.ToString("N0");
