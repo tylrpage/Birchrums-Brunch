@@ -4588,7 +4588,7 @@ MonoBehaviour:
     - Key: 0
       Value: 3
     - Key: 1
-      Value: 3
+      Value: 2.5
     - Key: 2
       Value: 2
     - Key: 3
@@ -4660,11 +4660,11 @@ MonoBehaviour:
   PointsNeededPerLevel:
     list:
     - Key: 0
-      Value: 100
+      Value: 7500
     - Key: 1
-      Value: 100
+      Value: 10000
     - Key: 2
-      Value: 100
+      Value: 20000
   MysterySprite: {fileID: 21300000, guid: 7778a7138a13f0946bc0ffd5089433d8, type: 3}
 --- !u!114 &1590360295
 MonoBehaviour:
@@ -6892,6 +6892,38 @@ PrefabInstance:
     - target: {fileID: 9002127168494159327, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -2.205
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002127168864788215, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002127168864788215, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002127168864788215, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002127168864788215, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002127168939180079, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002127168939180079, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002127168939180079, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002127168939180079, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c01c073d8e5f7b84aafb6a685c14102c, type: 3}
