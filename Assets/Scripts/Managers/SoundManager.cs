@@ -17,9 +17,20 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip buttonSound;
     [SerializeField] private AudioClip levelSuccessSound;
     [SerializeField] private AudioClip levelFailureSound;
+    [SerializeField] private AudioSource musicAudioSource;
+    [SerializeField] private SerializableDictionary<LevelSelectManager.Level, AudioClip> levelMusic;
+    [SerializeField] private float fadedMusicVolume;
+    [SerializeField] private float musicFadeSpeed;
 
     private float _timeSinceLastScoreSound;
     private int _scoreSoundLevel;
+    private float _originalMusicVolume;
+    private Coroutine _existingFadeRoutine;
+
+    private void Awake()
+    {
+        _originalMusicVolume = musicAudioSource.volume;
+    }
 
     public void WoodHit(float relVelMag)
     {
@@ -68,5 +79,22 @@ public class SoundManager : MonoBehaviour
     public void ButtonPressed()
     {
         audioSource.PlayOneShot(buttonSound);
+    }
+
+    public void StartLevelMusic(LevelSelectManager.Level level)
+    {
+        AudioClip audioClip = levelMusic[level];
+        musicAudioSource.clip = audioClip;
+        musicAudioSource.Play();
+    }
+
+    public void StopLevelMusic()
+    {
+        musicAudioSource.Stop();
+    }
+
+    public void AdjustMusicVolume(bool fadeOut)
+    {
+        musicAudioSource.volume = fadeOut ? fadedMusicVolume : _originalMusicVolume;
     }
 }

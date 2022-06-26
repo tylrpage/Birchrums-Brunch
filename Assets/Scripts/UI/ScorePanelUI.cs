@@ -81,6 +81,7 @@ public class ScorePanelUI : MonoBehaviour
         
         GameManager.Instance.CameraManager.MoveToCanvas(CameraManager.CanvasOption.Level);
         GameManager.Instance.SoundManager.ButtonPressed();
+        GameManager.Instance.SoundManager.StopLevelMusic();
     }
     
     public void ReplayClicked()

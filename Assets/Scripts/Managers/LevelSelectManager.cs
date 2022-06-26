@@ -82,17 +82,21 @@ public class LevelSelectManager : MonoBehaviour
         return null;
     }
 
-    public void StartLevel(Level level, bool showDialog)
+    public void StartLevel(Level level, bool isNotReplay)
     {
         CurrentLevel = level;
         GameManager.Instance.CameraManager.MoveToCanvas(CameraManager.CanvasOption.Game);
+        
+        GameManager.Instance.SoundManager.AdjustMusicVolume(false);
 
-        if (showDialog)
+        if (isNotReplay)
         {
             _dialogIndex = 0;
             dialogImage.gameObject.SetActive(true);
             List<Sprite> dialogs = GetDialogForLevel(CurrentLevel);
             dialogImage.sprite = dialogs[_dialogIndex];
+            
+            GameManager.Instance.SoundManager.StartLevelMusic(level);
         }
         else
         {
@@ -136,6 +140,8 @@ public class LevelSelectManager : MonoBehaviour
             // Unlock the next level in prefs and ui
             CompleteLevel(CurrentLevel);
         }
+
+        GameManager.Instance.SoundManager.AdjustMusicVolume(true);
     }
 
     public LevelState GetLevelState(Level level)
