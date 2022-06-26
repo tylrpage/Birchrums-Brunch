@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelSelectManager : MonoBehaviour
 {
@@ -29,7 +30,15 @@ public class LevelSelectManager : MonoBehaviour
     public SerializableDictionary<Level, int> PointsNeededPerLevel;
     public Sprite MysterySprite;
 
+    [SerializeField] private List<Sprite> level1Dialogs;
+    [SerializeField] private List<Sprite> level2Dialogs;
+    [SerializeField] private List<Sprite> level3Dialogs;
+    [SerializeField] private List<Sprite> endlessDialogs;
+    [SerializeField] private Image dialogImage;
+
     private Dictionary<Level, LevelState> _levelStates = new Dictionary<Level, LevelState>();
+    // negative if not showing dialog
+    private int _dialogIndex;
 
     private void Awake()
     {
@@ -37,23 +46,69 @@ public class LevelSelectManager : MonoBehaviour
         GameManager.Instance.TimeManager.TimerEnded += OnTimerEnded;
     }
 
-    public void StartLevel(Level level)
+    private void Update()
+    {
+        if (_dialogIndex >= 0 && Input.GetKeyDown(KeyCode.Space))
+        {
+            List<Sprite> dialogs = GetDialogForLevel(CurrentLevel);
+            if (_dialogIndex == dialogs.Count - 1)
+            {
+                dialogImage.gameObject.SetActive(false);
+                // It was the last dialog, start game
+                StartLevel(CurrentLevel, false);
+            }
+            else
+            {
+                _dialogIndex++;
+                dialogImage.sprite = dialogs[_dialogIndex];
+            }
+        }
+    }
+
+    private List<Sprite> GetDialogForLevel(Level level)
+    {
+        switch (level)
+        {
+            case Level.One:
+                return level1Dialogs;
+            case Level.Two:
+                return level2Dialogs;
+            case Level.Three:
+                return level3Dialogs;
+            case Level.Endless:
+                return endlessDialogs;
+        }
+
+        return null;
+    }
+
+    public void StartLevel(Level level, bool showDialog)
     {
         CurrentLevel = level;
-        
-        GameManager.Instance.ObjectSpawnManager.StartLevel(level);
         GameManager.Instance.CameraManager.MoveToCanvas(CameraManager.CanvasOption.Game);
-        GameManager.Instance.PointsManager.ResetHighestComboAndPoints();
-        
-        if (level == Level.Endless)
-            GameManager.Instance.TimeManager.StartStopwatch();
+
+        if (showDialog)
+        {
+            _dialogIndex = 0;
+            dialogImage.gameObject.SetActive(true);
+            List<Sprite> dialogs = GetDialogForLevel(CurrentLevel);
+            dialogImage.sprite = dialogs[_dialogIndex];
+        }
         else
-            GameManager.Instance.TimeManager.StartTimer();
+        {
+            GameManager.Instance.ObjectSpawnManager.StartLevel(level);
+            GameManager.Instance.PointsManager.ResetHighestComboAndPoints();
+        
+            if (level == Level.Endless)
+                GameManager.Instance.TimeManager.StartStopwatch();
+            else
+                GameManager.Instance.TimeManager.StartTimer();
+        }
     }
 
     public void RestartLevel()
     {
-        StartLevel(CurrentLevel);
+        StartLevel(CurrentLevel, false);
     }
 
     public bool DidCompleteLevel()

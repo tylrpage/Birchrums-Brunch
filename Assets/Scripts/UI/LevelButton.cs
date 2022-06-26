@@ -56,7 +56,7 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnClicked()
     {
-        GameManager.Instance.LevelSelectManager.StartLevel(level);
+        GameManager.Instance.LevelSelectManager.StartLevel(level, true);
         GameManager.Instance.SoundManager.ButtonPressed();
     }
 }
