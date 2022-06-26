@@ -37,6 +37,7 @@ public class ScorePanelUI : MonoBehaviour
         bool didCompleteLevel = levelSelectManager.DidCompleteLevel();
         success.SetActive(didCompleteLevel);
         failed.SetActive(!didCompleteLevel);
+        GameManager.Instance.SoundManager.LevelComplete(didCompleteLevel);
         
         pointsText.text = GameManager.Instance.PointsManager.Points.ToString("N0");
         highestComboText.text = "x" + GameManager.Instance.PointsManager.HighestCombo.ToString("N0");
@@ -76,6 +77,7 @@ public class ScorePanelUI : MonoBehaviour
         Hide(false);
         
         GameManager.Instance.CameraManager.MoveToCanvas(CameraManager.CanvasOption.Level);
+        GameManager.Instance.SoundManager.ButtonPressed();
     }
     
     public void ReplayClicked()
@@ -83,5 +85,6 @@ public class ScorePanelUI : MonoBehaviour
         Hide(false);
         
         GameManager.Instance.LevelSelectManager.RestartLevel();
+        GameManager.Instance.SoundManager.ButtonPressed();
     }
 }

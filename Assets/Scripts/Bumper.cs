@@ -7,6 +7,7 @@ public class Bumper : MonoBehaviour
 {
     [SerializeField] private bool isLeft;
     [SerializeField] private float force;
+    [SerializeField] private float forceNeededForSound;
 
     private HingeJoint2D _hingeJoint2D;
     private Rigidbody2D _rigidbody2D;
@@ -37,5 +38,13 @@ public class Bumper : MonoBehaviour
         Vector2 objectPosition = new Vector2(transform.position.x, transform.position.y);
         Vector3 bumpForce = (isLeft ? transform.right : transform.right * -1) * force;
         _rigidbody2D.AddForceAtPosition(bumpForce,  objectPosition - _hingeJoint2D.anchor, ForceMode2D.Impulse);
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.collider.GetComponent<ObjectController>() != null)
+        {
+            GameManager.Instance.SoundManager.WoodHit(col.relativeVelocity.magnitude);
+        }
     }
 }

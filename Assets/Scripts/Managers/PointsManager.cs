@@ -29,6 +29,8 @@ public class PointsManager : MonoBehaviour
         {
             ChangePoints(basePoints);
             IncreaseCombo();
+            
+            GameManager.Instance.SoundManager.Score();
         }
         else
         {
@@ -37,6 +39,11 @@ public class PointsManager : MonoBehaviour
             if (GameManager.Instance.LevelSelectManager.CurrentLevel == LevelSelectManager.Level.Endless)
             {
                 GameManager.Instance.TimeManager.StopGame();
+            }
+            else
+            {
+                // Don't play mistake sound in endless, they will hear the failure sound instead
+                GameManager.Instance.SoundManager.Mistake();
             }
         }
     }

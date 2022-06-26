@@ -7,5 +7,6 @@ public class TitleUI : MonoBehaviour
     public void OnClicked()
     {
         GameManager.Instance.CameraManager.MoveToCanvas(CameraManager.CanvasOption.Level);
+        GameManager.Instance.SoundManager.Play();
     }
 }
