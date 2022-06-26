@@ -4862,7 +4862,7 @@ MonoBehaviour:
     - Key: 2
       Value: 1,2,3
     - Key: 3
-      Value: 1,2,3
+      Value: 1,2,3,4
   greensInARowLimit: 1
 --- !u!114 &1590360293
 MonoBehaviour:
